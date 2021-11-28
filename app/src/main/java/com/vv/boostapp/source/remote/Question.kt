@@ -7,8 +7,8 @@ import kotlinx.serialization.Serializable
 @Keep
 @Serializable
 data class Question(
-    @PrimaryKey(autoGenerate = true)
-    val value: Int? = null,
+    //@PrimaryKey(autoGenerate = true)
+    //val value: Int? = null,
     val number: Int,
     val question: String,
     val content: String,

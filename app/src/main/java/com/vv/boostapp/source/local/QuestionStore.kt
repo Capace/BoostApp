@@ -33,7 +33,7 @@ class QuestionStore @Inject constructor(
 }
 
 private fun Question.toLocal() = LocalQuestion(
-    value = value,
+    //value = value,
     number = number,
     question = question,
     content = content,
@@ -42,7 +42,7 @@ private fun Question.toLocal() = LocalQuestion(
 )
 
 private fun LocalQuestion.fromLocal() = Question(
-    value = value,
+    //value = value,
     number = number,
     question = question,
     content = content,
