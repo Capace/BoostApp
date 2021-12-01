@@ -24,6 +24,4 @@ fun MainScreen(navController: NavController) {
         Text(text = "Welcome back!", style = MaterialTheme.typography.h4, color = MaterialTheme.colors.primary)
 
     }
-
-
 }

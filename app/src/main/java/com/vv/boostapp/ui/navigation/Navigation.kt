@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.vv.boostapp.auth_feature.presentation.register.RegisterScreen
 import com.vv.boostapp.ui.login_screen.LoginScreen
 import com.vv.boostapp.ui.main_screen.MainScreen
 import com.vv.boostapp.ui.play_screen.PlayScreen
@@ -37,6 +38,9 @@ fun Navigation(navController: NavHostController) {
         }
         composable(NavRoutes.LoginScreen.route){
             LoginScreen(navController)
+        }
+        composable(NavRoutes.RegisterScreen.route){
+            RegisterScreen(navController)
         }
         composable(NavRoutes.PlayScreen.route + "/{selectedPath}",
             listOf(navArgument("selectedPath") {

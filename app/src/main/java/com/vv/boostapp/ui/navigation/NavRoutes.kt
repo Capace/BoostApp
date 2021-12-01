@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 
 sealed class NavRoutes(val route :String){
     object LoginScreen: NavRoutes("login_screen")
+    object RegisterScreen: NavRoutes("register_screen")
     object MainScreen : NavRoutes("main_screen")
     object SelectScreen: NavRoutes("select_screen")
     object SettingsScreen : NavRoutes("settings_screen")

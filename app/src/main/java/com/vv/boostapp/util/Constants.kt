@@ -11,6 +11,14 @@ object Constants {
     const val PATH = "selectedPath"
     const val answer = "userAnswer"
 
+    const val KEY_JWT_TOKEN = "jwt_token"
+    const val KEY_USER_ID = "userId"
+
+    const val MIN_PASS_LENGTH = 6
+    const val MIN_USERNAME_LENGTH = 4
+
+    const val SHARED_PREF_NAME = "shared_pref"
+
     val smallPadding = 4.dp
     val mediumPadding = 8.dp
     val largePadding = 12.dp

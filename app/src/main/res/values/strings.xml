@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">BoostApp</string>
     <string name="error_unknown">error unknown</string>
+    <string name="unkonwn_error">Unknown Error</string>
+    <string name="something_wrong">Something went wrong</string>
+    <string name="could_not_reach_server">Oops, could not reach server</string>
+    <string name="success_registration">Registration Successful</string>
 </resources>
