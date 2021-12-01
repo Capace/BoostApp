@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.vv.boostapp.ui.login_screen.LoginScreen
 import com.vv.boostapp.ui.main_screen.MainScreen
 import com.vv.boostapp.ui.play_screen.PlayScreen
 import com.vv.boostapp.ui.select_screen.SelectScreen
@@ -33,6 +34,9 @@ fun Navigation(navController: NavHostController) {
         }*/
         composable(NavRoutes.SplashScreen.route) {
             SplashScreen(navController = navController)
+        }
+        composable(NavRoutes.LoginScreen.route){
+            LoginScreen(navController)
         }
         composable(NavRoutes.PlayScreen.route + "/{selectedPath}",
             listOf(navArgument("selectedPath") {

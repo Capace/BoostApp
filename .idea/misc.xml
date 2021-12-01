@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Victor/AndroidStudioProjects/BoostApp/app/src/main/res/drawable/ic_kidney.xml" value="0.43333333333333335" />
+        <entry key="..\:/Users/Victor/AndroidStudioProjects/BoostApp/app/src/main/res/drawable/ic_spiral.xml" value="0.43333333333333335" />
         <entry key="app/src/main/res/drawable/ic_spiral.xml" value="0.5687179487179487" />
       </map>
     </option>

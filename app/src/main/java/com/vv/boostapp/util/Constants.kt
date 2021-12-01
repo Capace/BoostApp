@@ -14,6 +14,7 @@ object Constants {
     val smallPadding = 4.dp
     val mediumPadding = 8.dp
     val largePadding = 12.dp
+    val extraLargePadding = 24.dp
 
     val smallElevation = 2.dp
     val mediumElevation = 4.dp
