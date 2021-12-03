@@ -1,9 +1,12 @@
 package com.vv.boostapp.auth_feature.domain.use_case
 
+import com.vv.boostapp.R
 import com.vv.boostapp.auth_feature.domain.AuthRepository
 import com.vv.boostapp.auth_feature.domain.models.RegisterResult
 import com.vv.boostapp.auth_feature.util.ValidateAuth
+import com.vv.boostapp.util.Resource
 import com.vv.boostapp.util.SimpleResource
+import com.vv.boostapp.util.UiText
 import javax.inject.Inject
 
 class RegisterUseCase @Inject constructor(
@@ -24,7 +27,8 @@ class RegisterUseCase @Inject constructor(
             return RegisterResult(
                 emailError = emailError,
                 usernameError = usernameError,
-                passwordError = passwordError
+                passwordError = passwordError,
+                result = Resource.Error(UiText.StringResource(R.string.register_error))
             )
         }
         val result = repository.register(email = email.trim(), username = username.trim(), password = password.trim())
@@ -32,7 +36,6 @@ class RegisterUseCase @Inject constructor(
         return RegisterResult(
             result = result
         )
-
 
     }
 }

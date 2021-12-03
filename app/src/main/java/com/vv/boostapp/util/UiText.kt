@@ -12,6 +12,9 @@ sealed class UiText {
         fun unknownError(): UiText {
             return UiText.StringResource(R.string.error_unknown)
         }
+        fun successful(): UiText {
+            return UiText.StringResource(R.string.successful_login)
+        }
     }
 }
 

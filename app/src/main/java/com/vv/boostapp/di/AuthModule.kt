@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import com.vv.boostapp.auth_feature.data.remote.AuthApi
 import com.vv.boostapp.auth_feature.data.repository.AuthRepositoryImpl
 import com.vv.boostapp.auth_feature.domain.AuthRepository
+import com.vv.boostapp.auth_feature.domain.use_case.AuthenticateUseCase
 import com.vv.boostapp.auth_feature.domain.use_case.RegisterUseCase
 import dagger.Module
 import dagger.Provides
@@ -43,6 +44,12 @@ object AuthModule {
     @Provides
     fun provideRegisterUseCase(repository: AuthRepository): RegisterUseCase{
         return RegisterUseCase(repository = repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthenticateUseCase(repository: AuthRepository): AuthenticateUseCase{
+        return AuthenticateUseCase(repository = repository)
     }
 
 

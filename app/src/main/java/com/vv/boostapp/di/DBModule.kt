@@ -26,5 +26,5 @@ object DBModule {
 
     @Singleton
     @Provides
-    fun provideYourDao(db: QuestionDatabase) = db.getQuestions()
+    fun provideDao(db: QuestionDatabase) = db.getQuestions()
 }

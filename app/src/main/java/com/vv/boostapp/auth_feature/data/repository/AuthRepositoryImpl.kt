@@ -47,10 +47,11 @@ class AuthRepositoryImpl(
 
     }
 
-    override suspend fun login(username: String, email: String, password: String): SimpleResource {
-        val request = LoginRequest(username = username, password = password)
+    override suspend fun login(email: String, password: String): SimpleResource {
+        val request = LoginRequest(email = email, password = password)
         return try{
             val response = api.login(request = request)
+            println(response.data)
             if (response.successful){
                 response.data?.let {authResponse ->
                     sharedPreferences.edit()

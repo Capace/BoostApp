@@ -4,10 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.BottomAppBar
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Menu
@@ -23,6 +20,7 @@ import com.vv.boostapp.ui.navigation.NavRoutes
 fun CustomScaffold(
     navController: NavController,
     modifier: Modifier = Modifier,
+    scaffoldState :ScaffoldState,
     showBottomBar: Boolean = true,
     bottomNavItems: List<BottomNavItem> = listOf(
         BottomNavItem(
@@ -75,7 +73,8 @@ fun CustomScaffold(
                     }
                 }
             }
-        }, modifier = modifier
+        }, modifier = modifier,
+        scaffoldState = scaffoldState
     ) {innerpadding->
         Box(modifier = Modifier.padding(innerpadding)){
             content()

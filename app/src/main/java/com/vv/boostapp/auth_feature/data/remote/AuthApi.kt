@@ -10,17 +10,17 @@ import retrofit2.http.POST
 
 interface AuthApi {
 
-    @POST("/api/user/create")
+    @POST("/user/create")
     suspend fun register(
         @Body request: CreateAccountRequest
     ): BasicApiResponse<Unit>
 
-    @POST("/api/user/login")
+    @POST("/user/login")
     suspend fun login(
         @Body request: LoginRequest
     ): BasicApiResponse<AuthResponse>
 
-    @GET("/api/user/authenticate")
+    @GET("/user/authenticate")
     suspend fun authenticate()
 
     companion object {

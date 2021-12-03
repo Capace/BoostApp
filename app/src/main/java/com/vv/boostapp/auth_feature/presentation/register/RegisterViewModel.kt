@@ -58,6 +58,9 @@ class RegisterViewModel @Inject constructor(
             _usernameState.value = usernameState.value
             _emailState.value = emailState.value
             _passwordState.value = passwordState.value
+            println(emailState.value)
+            println(usernameState.value)
+            println(passwordState.value)
             val registerResult = registerUseCase(
                 email = emailState.value,
                 username = usernameState.value,

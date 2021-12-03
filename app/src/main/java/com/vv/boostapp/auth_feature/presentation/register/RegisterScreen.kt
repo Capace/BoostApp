@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -15,6 +16,7 @@ import com.vv.boostapp.ui.components.StandardTextField
 import com.vv.boostapp.ui.navigation.NavRoutes
 import com.vv.boostapp.util.Constants
 
+@ExperimentalComposeUiApi
 @Composable
 fun RegisterScreen(
     navController: NavController,
