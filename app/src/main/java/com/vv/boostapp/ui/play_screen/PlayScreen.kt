@@ -1,44 +1,45 @@
 package com.vv.boostapp.ui.play_screen
 
+import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.vv.boostapp.ui.play_screen.components.AnswersFrame
+import com.vv.boostapp.ui.play_screen.components.CustomAnimationSlide
+import com.vv.boostapp.ui.play_screen.components.FinalScoreBox
+import com.vv.boostapp.ui.play_screen.components.QuestionTextBox
 import com.vv.boostapp.util.Constants
+import kotlinx.coroutines.delay
 
+@ExperimentalAnimationApi
 @Composable
 fun PlayScreen(
     navController: NavController,
     selectedPath: String?,
-    textColor : Color = MaterialTheme.colors.primary,
     viewModel: PlayViewModel = hiltViewModel()
 ) {
-    val state = viewModel.questionState.collectAsState()
+    val questionState = viewModel.questionState.collectAsState()
     val answers = viewModel.userAnswer
 
     var index = remember {
         mutableStateOf(0)
     }
+    var score by remember { mutableStateOf(0) }
+    var time by remember {
+        mutableStateOf(10)
+    }
 
-    println(index.value)
-    println(selectedPath)
-
-    Text(text = state.value.error)
 
 
-    Text(text = "Score: ")
+
+
+
 
     Column(
         modifier = Modifier
@@ -49,31 +50,68 @@ fun PlayScreen(
         verticalArrangement = Arrangement.Center
     ) {
 
-        state.value.questions?.let {questions->
 
-            Text(
-                text = questions[index.value].question,
-                color = textColor,
-                style = MaterialTheme.typography.h6,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(Constants.mediumHeight))
-            questions[index.value].answers.forEachIndexed { i, option ->
-                AnswersFrame(
-                    answer = option,
-                    //questionNumber = questions[index.value].number,
-                    onAnswered = {
-                        index.value += 1
-                    } )
-                Spacer(modifier = Modifier.height(Constants.mediumHeight))
+        questionState.value.questions?.let { questions ->
 
+            println(index.value)
+            println(questions.count())
+            if (index.value < questions.count()) {
+
+                //SCORE
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+
+
+                    Text(text = "Score: ")
+                    CustomAnimationSlide(count = score)
+/*            Button(onClick = { count += time; time = 10 }) {
             }
+            Button(onClick = { count-- }) {
+            }*/
 
+                    Text(text = "time: " + time.toString())
+                    LaunchedEffect(key1 = time) {
+                        if (time > 0) {
+                            delay(1000L)
+                            time -= 1
+                        }
+                    }
+
+                }
+
+
+                QuestionTextBox(
+                    text = questions[index.value].question,
+                )
+                Spacer(modifier = Modifier.height(Constants.mediumHeight))
+                questions[index.value].answers.forEachIndexed { i, option ->
+                    AnswersFrame(
+                        answer = option,
+                        //questionNumber = questions[index.value].number,
+                        onAnswered = {
+                            if (questions[index.value].correctAnswer == i) {
+                                score += time
+                                index.value += 1
+                                time = 10
+                            } else {
+                                score -= 1
+                                index.value += 1
+                                time = 10
+                            }
+                        })
+                    Spacer(modifier = Modifier.height(Constants.mediumHeight))
+
+                }
+            } else {
+                FinalScoreBox(text = "Scor final: ", score = score)
+            }
         }
-        if(state.value.questions.isNullOrEmpty()){
+        if (questionState.value.questions.isNullOrEmpty()) {
             Text(text = "NU AM GASIT INTREBARI")
         }
+        Text(text = questionState.value.error)
     }
-
-
 }

@@ -5,7 +5,7 @@ import androidx.compose.ui.unit.sp
 
 object Constants {
 
-    const val BASE_URL = "http://172.16.24.238:8080/"
+    const val BASE_URL = "http://192.168.0.236:8080/"
     const val QUESTIONS = "$BASE_URL/r1"
 
     const val PATH = "selectedPath"

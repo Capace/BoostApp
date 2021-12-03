@@ -1,5 +1,6 @@
 package com.vv.boostapp.ui.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -15,6 +16,7 @@ import com.vv.boostapp.ui.play_screen.PlayScreen
 import com.vv.boostapp.ui.select_screen.SelectScreen
 import com.vv.boostapp.ui.splash_screen.SplashScreen
 
+@ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @Composable
 fun Navigation(
@@ -23,7 +25,7 @@ fun Navigation(
 ) {
 
 
-    NavHost(navController = navController, startDestination = NavRoutes.SplashScreen.route) {
+    NavHost(navController = navController, startDestination = NavRoutes.MainScreen.route) {
         composable(NavRoutes.MainScreen.route) {
             MainScreen(navController = navController)
         }
