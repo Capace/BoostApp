@@ -1,6 +1,7 @@
 package com.vv.boostapp.ui.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.ui.graphics.Color
 
 sealed class NavRoutes(val route :String){
     object LoginScreen: NavRoutes("login_screen")

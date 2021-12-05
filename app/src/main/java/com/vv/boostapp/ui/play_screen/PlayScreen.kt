@@ -3,20 +3,29 @@ package com.vv.boostapp.ui.play_screen
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.vv.boostapp.ui.play_screen.components.AnswersFrame
 import com.vv.boostapp.ui.play_screen.components.CustomAnimationSlide
 import com.vv.boostapp.ui.play_screen.components.FinalScoreBox
 import com.vv.boostapp.ui.play_screen.components.QuestionTextBox
+import com.vv.boostapp.ui.theme.DarkGrayVariant
+import com.vv.boostapp.ui.theme.GrayVariant
+import com.vv.boostapp.ui.theme.NephroColor
 import com.vv.boostapp.util.Constants
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.selects.select
 
+@ExperimentalComposeUiApi
 @ExperimentalAnimationApi
 @Composable
 fun PlayScreen(
@@ -34,11 +43,7 @@ fun PlayScreen(
     var time by remember {
         mutableStateOf(10)
     }
-
-
-
-
-
+    var color = remember { mutableStateOf(DarkGrayVariant) }
 
 
     Column(
@@ -53,6 +58,12 @@ fun PlayScreen(
 
         questionState.value.questions?.let { questions ->
 
+            var selected by remember {
+                mutableStateOf(false)
+            }
+            color.value = questionState.value.color.let{
+                it!!
+            }
             println(index.value)
             println(questions.count())
             if (index.value < questions.count()) {
@@ -66,12 +77,9 @@ fun PlayScreen(
 
 
                     Text(text = "Score: ")
-                    CustomAnimationSlide(count = score)
-/*            Button(onClick = { count += time; time = 10 }) {
-            }
-            Button(onClick = { count-- }) {
-            }*/
-
+                    questionState.value.color?.let {
+                        CustomAnimationSlide(count = score, color = it)
+                    }
                     Text(text = "time: " + time.toString())
                     LaunchedEffect(key1 = time) {
                         if (time > 0) {
@@ -79,29 +87,34 @@ fun PlayScreen(
                             time -= 1
                         }
                     }
-
                 }
 
-
-                QuestionTextBox(
-                    text = questions[index.value].question,
-                )
+                questionState.value.color?.let {
+                    QuestionTextBox(
+                        text = questions[index.value].question,
+                        textColor = it
+                    )
+                }
                 Spacer(modifier = Modifier.height(Constants.mediumHeight))
                 questions[index.value].answers.forEachIndexed { i, option ->
                     AnswersFrame(
                         answer = option,
                         //questionNumber = questions[index.value].number,
                         onAnswered = {
+                            println(color.value)
                             if (questions[index.value].correctAnswer == i) {
                                 score += time
                                 index.value += 1
                                 time = 10
+                                selected = !selected
                             } else {
                                 score -= 1
                                 index.value += 1
                                 time = 10
+                                selected = !selected
                             }
-                        })
+                        },
+                    pressedColor = color.value)
                     Spacer(modifier = Modifier.height(Constants.mediumHeight))
 
                 }

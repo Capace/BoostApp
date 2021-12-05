@@ -79,7 +79,7 @@ fun LoginScreen(
         StandardTextField(
             text = viewModel.usernameText.value,
             onvalueChange = { viewModel.setUsername(it) },
-            hint = "Username"
+            hint = "Email"
         )
 
         StandardTextField(

@@ -10,6 +10,7 @@ import com.vv.boostapp.util.Resource
 import com.vv.boostapp.util.UiEvent
 import com.vv.boostapp.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
@@ -27,6 +28,7 @@ class SplashScreenViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+            delay(1500L)
             when(authenticateUseCase()){
                 is Resource.Success->{
                     _eventFlow.emit(UiEvent.Navigate(NavRoutes.MainScreen.route))

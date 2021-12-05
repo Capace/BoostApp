@@ -30,7 +30,7 @@ class RegisterViewModel @Inject constructor(
     val passwordState: State<String> = _passwordState
 
     private val _eventFlow = MutableSharedFlow<UiEvent>()
-    val eventflow = _eventFlow.asSharedFlow()
+    val eventFlow = _eventFlow.asSharedFlow()
 
 
     fun onEvent(event: RegisterEvent) {

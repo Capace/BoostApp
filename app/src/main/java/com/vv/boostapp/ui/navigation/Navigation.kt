@@ -25,7 +25,7 @@ fun Navigation(
 ) {
 
 
-    NavHost(navController = navController, startDestination = NavRoutes.MainScreen.route) {
+    NavHost(navController = navController, startDestination = NavRoutes.RegisterScreen.route) {
         composable(NavRoutes.MainScreen.route) {
             MainScreen(navController = navController)
         }
@@ -50,7 +50,7 @@ fun Navigation(
             LoginScreen(navController, scaffoldState = scaffoldState)
         }
         composable(NavRoutes.RegisterScreen.route) {
-            RegisterScreen(navController)
+            RegisterScreen(navController, scaffoldState = scaffoldState)
         }
         composable(NavRoutes.PlayScreen.route + "/{selectedPath}",
             listOf(navArgument("selectedPath") {
