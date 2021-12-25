@@ -2,6 +2,8 @@ package com.vv.boostapp.ui.navigation
 
 import android.annotation.SuppressLint
 import androidx.compose.ui.graphics.Color
+import androidx.lifecycle.SavedStateHandle
+import com.vv.boostapp.util.Constants
 
 sealed class NavRoutes(val route :String){
     object LoginScreen: NavRoutes("login_screen")
@@ -14,6 +16,13 @@ sealed class NavRoutes(val route :String){
     @SuppressLint("CustomSplashScreen")
     object SplashScreen :NavRoutes ("splash_screen")
     object PlayScreen :NavRoutes ("play_screen"){
-        fun createPath(selectedPath : String) = "play_screen/$selectedPath"
+        fun createPath(selectedPath: String) = "play_screen/$selectedPath"
+    }
+    object QuestionsScreen :NavRoutes ("questions_screen"){
+
+        fun createPath(selectedStyle : String, savedStateHandle: SavedStateHandle = SavedStateHandle()): String {
+            val selectedPath = savedStateHandle.get<String>(Constants.PATH)
+            return "play_screen/$selectedPath/questions_screen"
+        }
     }
 }

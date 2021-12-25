@@ -13,6 +13,8 @@ import com.vv.boostapp.auth_feature.presentation.register.RegisterScreen
 import com.vv.boostapp.ui.login_screen.LoginScreen
 import com.vv.boostapp.ui.main_screen.MainScreen
 import com.vv.boostapp.ui.play_screen.PlayScreen
+import com.vv.boostapp.ui.play_screen.QuestionsScreen
+import com.vv.boostapp.ui.profile_screen.ProfileScreen
 import com.vv.boostapp.ui.select_screen.SelectScreen
 import com.vv.boostapp.ui.splash_screen.SplashScreen
 
@@ -25,7 +27,7 @@ fun Navigation(
 ) {
 
 
-    NavHost(navController = navController, startDestination = NavRoutes.RegisterScreen.route) {
+    NavHost(navController = navController, startDestination = NavRoutes.ProfileScreen.route) {
         composable(NavRoutes.MainScreen.route) {
             MainScreen(navController = navController)
         }
@@ -33,7 +35,7 @@ fun Navigation(
             SelectScreen(navController)
         }
         composable(NavRoutes.ProfileScreen.route) {
-
+            ProfileScreen()
         }
         composable(NavRoutes.AboutScreen.route) {
 
@@ -58,9 +60,21 @@ fun Navigation(
                 nullable = true
             }
             )) {
-            PlayScreen(
+            PlayScreen(navController)
+        }
+        composable(NavRoutes.QuestionsScreen.route + "/{selectedPath}" + "/{selectedStyle}",
+            listOf(navArgument("selectedPath") {
+                type = NavType.StringType
+                nullable = true
+            }, navArgument("selectedStyle") {
+                type = NavType.StringType
+                nullable = true
+            }
+            )
+        ) {
+            QuestionsScreen(
                 navController = navController,
-                selectedPath = it.arguments?.getString("selectedPath")
+                selectedPath = it.arguments?.getString("selectedStyle")
             )
         }
     }
