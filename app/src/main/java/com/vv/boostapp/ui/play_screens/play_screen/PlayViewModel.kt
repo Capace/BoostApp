@@ -12,10 +12,8 @@ class PlayViewModel @Inject constructor(
     var path = ""
     init {
         savedStateHandle.get<String>(Constants.PATH)?.let {
-             path = getPath(it)
+             path = it
         }
     }
-
-    fun getPath(path: String) = path
 
 }

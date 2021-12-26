@@ -71,8 +71,7 @@ fun Navigation(
             )
         ) {
             QuestionsScreen(
-                navController = navController,
-                selectedPath = it.arguments?.getString("selectedStyle")
+                navController = navController
             )
         }
         composable(NavRoutes.ClinicalScreenn.route + "/{selectedPath}",

@@ -24,7 +24,6 @@ import kotlinx.coroutines.delay
 @Composable
 fun QuestionsScreen(
     navController: NavController,
-    selectedPath: String?,
     viewModel: QuestionsViewModel = hiltViewModel()
 ) {
     val questionState = viewModel.questionState.collectAsState()
@@ -72,7 +71,7 @@ fun QuestionsScreen(
 
                     Text(text = "Score: ")
                     questionState.value.color?.let {
-                        CustomAnimationSlide(count = score, color = it)
+                        CustomAnimationSlide(count = score, color = it, fontSize = 32)
                     }
                     Text(text = "time: " + time.toString())
                     LaunchedEffect(key1 = time) {

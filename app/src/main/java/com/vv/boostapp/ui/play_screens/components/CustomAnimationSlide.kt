@@ -5,12 +5,15 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @ExperimentalAnimationApi
 @Composable
 fun CustomAnimationSlide(
     count: Int,
-    color: Color = MaterialTheme.colors.primary
+    color: Color = MaterialTheme.colors.primary,
+    fontSize: Int = 12
 ) {
     AnimatedContent(targetState = count,
         transitionSpec = {
@@ -31,6 +34,6 @@ fun CustomAnimationSlide(
                 SizeTransform(clip = false)
             )
         }) { targetcount ->
-        Text(text = "$targetcount", color = color)
+        Text(text = "$targetcount", color = color, fontSize = fontSize.sp)
     }
 }

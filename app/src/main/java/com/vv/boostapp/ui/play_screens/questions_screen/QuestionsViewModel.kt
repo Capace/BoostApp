@@ -1,5 +1,6 @@
 package com.vv.boostapp.ui.play_screens.questions_screen
 
+import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -30,9 +31,14 @@ class QuestionsViewModel @Inject constructor(
     private val _userAnswer = mutableListOf<Int>()
     val userAnswer: MutableList<Int> = _userAnswer
 
+    var path =""
+
     init {
         savedStateHandle.get<String>(Constants.PATH).let {
             loadQuestions(it)
+            if (it != null) {
+                path = it
+            }
         }
         savedStateHandle.get<Color>("color").let {
             println("color =  " + it)
