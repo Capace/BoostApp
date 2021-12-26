@@ -1,13 +1,11 @@
-package com.vv.boostapp.ui.play_screen
+package com.vv.boostapp.ui.play_screens.questions_screen
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vv.boostapp.source.remote.QuestionRemote
-import com.vv.boostapp.ui.play_screen.use_cases.GetQuestionsUseCase
+import com.vv.boostapp.ui.play_screens.use_cases.GetQuestionsUseCase
 import com.vv.boostapp.ui.theme.CardioColor
 import com.vv.boostapp.ui.theme.NephroColor
 import com.vv.boostapp.ui.theme.NeuroColor

@@ -9,6 +9,8 @@ object Constants {
     const val QUESTIONS = "$BASE_URL/r1"
 
     const val PATH = "selectedPath"
+    const val STYLE = "selectedStyle"
+
     const val answer = "userAnswer"
 
     const val KEY_JWT_TOKEN = "jwt_token"

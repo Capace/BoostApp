@@ -1,4 +1,4 @@
-package com.vv.boostapp.ui.play_screen.components
+package com.vv.boostapp.ui.play_screens.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box

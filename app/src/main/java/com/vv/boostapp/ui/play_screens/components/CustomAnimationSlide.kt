@@ -1,20 +1,18 @@
-package com.vv.boostapp.ui.play_screen.components
+package com.vv.boostapp.ui.play_screens.components
 
 import androidx.compose.animation.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import kotlinx.coroutines.delay
+import androidx.compose.ui.graphics.Color
 
 @ExperimentalAnimationApi
 @Composable
-fun CustomCountdown(
-    time: Int,
-    isTimerRunning: Boolean
+fun CustomAnimationSlide(
+    count: Int,
+    color: Color = MaterialTheme.colors.primary
 ) {
-
-/*    AnimatedContent(targetState = time,
+    AnimatedContent(targetState = count,
         transitionSpec = {
             // Compare the incoming number with the previous number.
             if (targetState > initialState) {
@@ -33,9 +31,6 @@ fun CustomCountdown(
                 SizeTransform(clip = false)
             )
         }) { targetcount ->
-        Text(text = "$targetcount", color = MaterialTheme.colors.primary)
-    }*/
-
-
-
+        Text(text = "$targetcount", color = color)
+    }
 }

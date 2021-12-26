@@ -1,4 +1,4 @@
-package com.vv.boostapp.ui.play_screen
+package com.vv.boostapp.ui.play_screens.questions_screen
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
@@ -11,10 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.vv.boostapp.ui.play_screen.components.AnswersFrame
-import com.vv.boostapp.ui.play_screen.components.CustomAnimationSlide
-import com.vv.boostapp.ui.play_screen.components.FinalScoreBox
-import com.vv.boostapp.ui.play_screen.components.QuestionTextBox
+import com.vv.boostapp.ui.play_screens.components.AnswersFrame
+import com.vv.boostapp.ui.play_screens.components.CustomAnimationSlide
+import com.vv.boostapp.ui.play_screens.components.FinalScoreBox
+import com.vv.boostapp.ui.play_screens.components.QuestionTextBox
 import com.vv.boostapp.ui.theme.DarkGrayVariant
 import com.vv.boostapp.util.Constants
 import kotlinx.coroutines.delay

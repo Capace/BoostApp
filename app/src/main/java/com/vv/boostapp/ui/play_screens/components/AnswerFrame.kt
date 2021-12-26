@@ -1,8 +1,7 @@
-package com.vv.boostapp.ui.play_screen.components
+package com.vv.boostapp.ui.play_screens.components
 
 import android.view.MotionEvent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,15 +13,10 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.text.style.TextAlign
-import com.vv.boostapp.ui.theme.CardioColor
-import com.vv.boostapp.ui.theme.DarkGrayVariant
 import com.vv.boostapp.ui.theme.GrayVariant
 import com.vv.boostapp.util.Constants
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
 
 @ExperimentalComposeUiApi
 @Composable
