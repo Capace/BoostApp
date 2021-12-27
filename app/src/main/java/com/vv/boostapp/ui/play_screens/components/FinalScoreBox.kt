@@ -13,12 +13,12 @@ import androidx.compose.ui.text.style.TextAlign
 @Composable
 fun FinalScoreBox(
     text: String,
-    score: Int,
-    textColor : Color = MaterialTheme.colors.primary
+    score: Double,
+    textColor: Color = MaterialTheme.colors.primary
 ) {
     Box(modifier = Modifier.fillMaxHeight(0.8f), contentAlignment = Alignment.Center){
         Text(
-            text = text + score,
+            text = text + String.format("%.2f", score).toDouble(),
             color = textColor,
             style = MaterialTheme.typography.h6,
             textAlign = TextAlign.Center

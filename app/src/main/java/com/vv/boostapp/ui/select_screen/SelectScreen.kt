@@ -15,9 +15,14 @@ import com.vv.boostapp.ui.theme.CardioColor
 import com.vv.boostapp.ui.theme.NephroColor
 import com.vv.boostapp.ui.theme.NeuroColor
 import com.vv.boostapp.ui.theme.OrangeVariant
+import com.vv.boostapp.util.QuestionState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun SelectScreen(navController: NavController) {
+
+    var questionState = MutableStateFlow(QuestionState())
 
     val paths: List<Path> = listOf(
         Path(
@@ -69,7 +74,7 @@ fun SelectScreen(navController: NavController) {
                 secondDescription = path.secondDescription,
                 image = path.image,
                 contentDescription = path.contentDescription,
-                onClick = { navController.navigate(NavRoutes.PlayScreen.createPath(path.route)) }
+                onClick = { navController.navigate(NavRoutes.PlayScreen.createPath(path.route, path.color)) }
             )
         }
     }

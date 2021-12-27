@@ -1,6 +1,7 @@
 package com.vv.boostapp.ui.play_screens.questions_screen
 
 import androidx.compose.animation.*
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -9,6 +10,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.vv.boostapp.ui.play_screens.components.AnswersFrame
@@ -26,15 +29,18 @@ fun QuestionsScreen(
     navController: NavController,
     viewModel: QuestionsViewModel = hiltViewModel()
 ) {
+
+
     val questionState = viewModel.questionState.collectAsState()
     val answers = viewModel.userAnswer
 
     var index = remember {
         mutableStateOf(0)
     }
-    var score by remember { mutableStateOf(0) }
+    val imageIndex = Images.images[index.value]
+    var score by remember { mutableStateOf(0.00) }
     var time by remember {
-        mutableStateOf(10)
+        mutableStateOf(Constants.INITIAL_TIME)
     }
     var color = remember { mutableStateOf(DarkGrayVariant) }
 
@@ -57,8 +63,6 @@ fun QuestionsScreen(
             color.value = questionState.value.color.let{
                 it!!
             }
-            println(index.value)
-            println(questions.count())
             if (index.value < questions.count()) {
 
                 //SCORE
@@ -71,14 +75,15 @@ fun QuestionsScreen(
 
                     Text(text = "Score: ")
                     questionState.value.color?.let {
-                        CustomAnimationSlide(count = score, color = it, fontSize = 32)
+                        CustomAnimationSlide(count = String.format("%.2f", score).toDouble(), color = it, fontSize = 32)
                     }
-                    Text(text = "time: " + time.toString())
+
+                    Text(text =String.format("%.1f", time))
                     LaunchedEffect(key1 = time) {
-                        if (time > 0) {
-                            delay(1000L)
-                            time -= 1
-                        }
+                        if (time > 0.1) {
+                            delay(100L)
+                            time -= 0.11
+                        }else time = 0.0
                     }
                 }
 
@@ -96,21 +101,25 @@ fun QuestionsScreen(
                         onAnswered = {
                             println(color.value)
                             if (questions[index.value].correctAnswer == i) {
-                                score += time
+                                score += time*2
                                 index.value += 1
-                                time = 10
                                 selected = !selected
                             } else {
-                                score -= 1
+                                score -= time * 3
                                 index.value += 1
-                                time = 10
                                 selected = !selected
                             }
+                            time = Constants.INITIAL_TIME
                         },
                     pressedColor = color.value)
                     Spacer(modifier = Modifier.height(Constants.mediumHeight))
 
                 }
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                Image(painter = painterResource(id = imageIndex), contentDescription = "buddha")
+
             } else {
                 FinalScoreBox(text = "Scor final: ", score = score)
             }
@@ -121,3 +130,5 @@ fun QuestionsScreen(
         Text(text = questionState.value.error)
     }
 }
+
+

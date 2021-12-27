@@ -1,9 +1,6 @@
 package com.vv.boostapp.source.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -17,6 +14,9 @@ interface QuestionDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(questions: List<LocalQuestion>)
+
+    @Query("delete from questions")
+    suspend fun nukeTable()
 
 
 }

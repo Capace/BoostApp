@@ -13,7 +13,7 @@ class QuestionRepository @Inject constructor(
     suspend fun allQuestions(path: String?): List<Question> = questionStore.ensureIsNotEmpty(path = path).all()
 
     private suspend fun QuestionStore.ensureIsNotEmpty(path: String? = null) = apply{
-        if(isEmpty()){
+        if(isEmpty() || true){
             println("IS EMPTY")
             val questions = questionRemote.getQuestions(path)
             save(questions)

@@ -18,7 +18,7 @@ sealed class NavRoutes(val route: String) {
     @SuppressLint("CustomSplashScreen")
     object SplashScreen : NavRoutes("splash_screen")
     object PlayScreen : NavRoutes("play_screen") {
-        fun createPath(selectedPath: String) = "play_screen/$selectedPath"
+        fun createPath(selectedPath: String, color: Color) = "play_screen/$selectedPath"
     }
 
     object QuestionsScreen : NavRoutes("questions_screen") {

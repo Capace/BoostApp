@@ -24,6 +24,7 @@ class QuestionStore @Inject constructor(
 
 
     suspend fun save(questions: List<Question>){
+        this.questions.nukeTable()
         this.questions.insert(questions.map { it.toLocal() })
         println("aici salvam")
     }

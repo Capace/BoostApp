@@ -34,11 +34,9 @@ class QuestionsViewModel @Inject constructor(
     var path =""
 
     init {
-        savedStateHandle.get<String>(Constants.PATH).let {
+        savedStateHandle.get<String>(Constants.PATH)?.let {
             loadQuestions(it)
-            if (it != null) {
-                path = it
-            }
+            path = it
         }
         savedStateHandle.get<Color>("color").let {
             println("color =  " + it)

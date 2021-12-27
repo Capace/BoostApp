@@ -8,7 +8,7 @@ import com.vv.boostapp.ui.theme.OrangePrimary
 
 data class QuestionState(
     var questions : List<Question>? = null,
-    val color : Color? = null,
+    var color : Color? = null,
     val isLoading: Boolean = false,
     val error : String = "",
     val path: String? = null

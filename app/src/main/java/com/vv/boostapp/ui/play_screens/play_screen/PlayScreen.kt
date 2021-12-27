@@ -5,6 +5,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,25 +23,33 @@ fun PlayScreen(
     navController: NavController,
     questionsViewModel: QuestionsViewModel = hiltViewModel()
 ) {
-    if (questionsViewModel.questionState.value.color == null) {
+
+    val questionState = questionsViewModel.questionState.collectAsState()
+    val themeColor = questionState.value.color
+
+    if (questionState.value.color == null) {
         Box(modifier = Modifier.fillMaxWidth().padding(30.dp), contentAlignment = Alignment.Center){
             CircularProgressIndicator()
+
         }
 
     } else {
-        val themeColor = questionsViewModel.questionState.value.color!!
-        val styles = listOf<LearningStyle>(
-            LearningStyle(
-                "Questions",
-                themeColor,
-                route = "questions_screen"
-            ),
-            LearningStyle(
-                "Clinical",
-                themeColor,
-                route = "clinical_screen"
+
+        val styles = themeColor?.let {
+            listOf<LearningStyle>(
+                LearningStyle(
+                    "Questions",
+                    it,
+                    route = "questions_screen"
+                ),
+                LearningStyle(
+                    "Clinical",
+                    it,
+                    route = "clinical_screen"
+                )
+
             )
-        )
+        }
 
 
 
@@ -50,22 +59,26 @@ fun PlayScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "Select learning style: ",
-                color = themeColor,
-                style = MaterialTheme.typography.h5
-            )
+            if (themeColor != null) {
+                Text(
+                    text = "Select learning style: ",
+                    color = themeColor,
+                    style = MaterialTheme.typography.h5
+                )
+            }
             Spacer(modifier = Modifier.height(24.dp))
 
-            for (element in styles) {
-                StyleContainer(onClick = {
-                    navController.navigate(
-                        NavRoutes.QuestionsScreen.createPath(
-                            element.route,
-                            questionsViewModel.path
+            if (styles != null) {
+                for (element in styles) {
+                    StyleContainer(onClick = {
+                        navController.navigate(
+                            NavRoutes.QuestionsScreen.createPath(
+                                element.route,
+                                questionsViewModel.path
+                            )
                         )
-                    )
-                }, element.name, element.color)
+                    }, element.name, element.color)
+                }
             }
         }
     }
