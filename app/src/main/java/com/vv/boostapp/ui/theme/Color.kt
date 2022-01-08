@@ -24,5 +24,6 @@ val CardioColor = Color(0XFFD32F2F)
 val NeuroColor = Color(0XFF8FA8DA)
 val PediColor = Color(0XFFEEEEEE)
 val NephroColor = Color(0XFFBCAAA4)
+val OncoColor = Color(0XFFE67E22)
 
 val GrayOnBackground = Color(0XFFEEEEEE)

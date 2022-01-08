@@ -11,11 +11,9 @@ import com.vv.boostapp.R
 import com.vv.boostapp.ui.navigation.NavRoutes
 import com.vv.boostapp.ui.select_screen.components.Path
 import com.vv.boostapp.ui.select_screen.components.StandardPath
-import com.vv.boostapp.ui.theme.CardioColor
-import com.vv.boostapp.ui.theme.NephroColor
-import com.vv.boostapp.ui.theme.NeuroColor
-import com.vv.boostapp.ui.theme.OrangeVariant
+import com.vv.boostapp.ui.theme.*
 import com.vv.boostapp.util.QuestionState
+import io.netty.channel.group.ChannelMatchers.compose
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -60,6 +58,15 @@ fun SelectScreen(navController: NavController) {
             image = painterResource(id = R.drawable.ic_kidney),
             contentDescription = "Nephrology",
             route = "nephrology"
+        ),
+        Path(
+            title = "Oncology",
+            color = OncoColor,
+            mainDescription = "bla bla",
+            secondDescription = "dadada",
+            image = painterResource(id = R.drawable.ic_cancer),
+            contentDescription = "Oncology",
+            route = "oncology"
         )
     )
 
